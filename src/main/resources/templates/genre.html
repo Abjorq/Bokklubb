@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bokklubb – Genre</title>
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 2rem; }
+        .pill { display: inline-block; padding: .4rem .7rem; border:1px solid #ccc; border-radius: 999px; margin:.25rem; }
+        .pill a { text-decoration: none; }
+        table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+        th, td { border: 1px solid #ddd; padding: 0.5rem; }
+        th { text-align: left; background: #f7f7f7; }
+    </style>
+</head>
+<body>
+<h1>Bläddra per genre</h1>
+<p><a href="/home">Tillbaka till startsidan</a></p>
+
+
+
+<section th:if="${genres} != null">
+    <p>Välj en genre nedan:</p>
+    <div>
+<span class="pill" th:each="g : ${genres}">
+<a th:href="@{'/genre'(type=${g})}" th:text="${g}">Genre</a>
+</span>
+    </div>
+</section>
+
+
+
+<section th:if="${books} != null">
+    <h2 th:text="'Genre: ' + ${selectedGenre}">Genre</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Författare</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${books}">
+            <td th:text="${b.title}">Titel</td>
+            <td th:text="${b.author}">Författare</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(books)}">
+            <td colspan="2"><em>Inga böcker hittades för denna genre.</em></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bokklubb – Rekommenderade böcker</title>
+    <style> /* byta utseende innan inlämning??*/
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 2rem; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 0.5rem; }
+        th { text-align: left; background: #f7f7f7; }
+        caption { text-align: left; font-weight: 600; margin-bottom: .5rem; }
+    </style>
+</head>
+<body>
+<h1>Rekommenderade böcker</h1>
+<p><a href="/home">Tillbaka till startsidan</a></p>
+
+
+<table>
+    <caption>Alla böcker</caption>
+    <thead>
+    <tr>
+        <th>Titel</th>
+        <th>Författare</th>
+        <th>genre</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="b : ${books}">
+        <td th:text="${b.title}">Titel</td>
+        <td th:text="${b.author}">Författare</td>
+        <td th:text="${b.genre}">Genre</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
